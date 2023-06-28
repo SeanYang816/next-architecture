@@ -12,7 +12,9 @@
     "build-storybook": "storybook build",
     "prettier": "prettier \"**/*.+(json|ts|tsx)\"",
     "format:check": "yarn prettier -- --check",
-    "format:fix": "yarn prettier -- --write"
+    "format:fix": "yarn prettier -- --write",
+    "format:storybook": "prettier --write '**/*.+(json|ts|tsx)'",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@types/node": "20.3.2",
