@@ -1,0 +1,15 @@
+module.exports = {
+  extends: [
+    'next/core-web-vitals',
+    'plugin:storybook/recommended'
+  ],
+  rules: {
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['@/features/*/*'],
+      },
+    ],
+    'import/no-cycle': 'error',
+}
+};
