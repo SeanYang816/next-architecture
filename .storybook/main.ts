@@ -1,4 +1,7 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 const config: StorybookConfig = {
   stories: [
     '../src/**/*.mdx',
@@ -8,6 +11,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    '@chakra-ui/storybook-addon',
   ],
   framework: {
     name: '@storybook/nextjs',
@@ -15,6 +19,18 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: 'tag',
+  },
+  webpackFinal: async (config) => {
+    config.resolve!.plugins = config.resolve!.plugins || [];
+    config.resolve!.plugins.push(
+      new TsconfigPathsPlugin({
+        configFile: path.resolve(
+          __dirname,
+          '../tsconfig.json'
+        ),
+      })
+    );
+    return config;
   },
 };
 export default config;
